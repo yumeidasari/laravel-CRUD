@@ -42,6 +42,14 @@ Route::get('/', function() {
     return view('datatable.table');
 });
 
+
 Route::get('/data-tables', function() {
     return view('datatable.table2');
 });
+
+//TUGAS CRUD
+
+Route::resource('/pertanyaan', 'PertanyaanController');
+
+Route::get('/jawaban/{pertanyaan_id}', 'JawabanController@index');
+Route::post('jawaban/{pertanyaan_id}', 'JawabanController@store');
