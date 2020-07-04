@@ -41,10 +41,7 @@
                                     <td>
                                         {{$jawaban->jawaban}}
                                     </td>
-                                    <td>
-                                        <a href="{{url("jawaban/$pertanyaan->id")}}" > Hapus </a>
-                                    </td>
-                                    
+                                   
                                 </tr>
                             @endforeach
                         @endif
