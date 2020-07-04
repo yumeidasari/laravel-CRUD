@@ -28,7 +28,8 @@
                                     <td>
                                         <a href="{{url("jawaban/$pertanyaan->id")}}" >Lihat Jawaban </a>|
                                         <a href="{{url("pertanyaan/$pertanyaan->id")}}" > Detail </a>|
-                                        <a href="{{url("pertanyaan/$pertanyaan->id")}}" > Hapus </a>
+                                        <a href="{{url("pertanyaan/$pertanyaan->id/edit")}}" > Edit </a>|
+                                        <a href="{{url("pertanyaan/$pertanyaan->id/delete")}}" > Hapus </a>
                                     </td>
 
                                 </tr>
