@@ -48,7 +48,7 @@ Route::get('/data-tables', function() {
 });
 
 //TUGAS CRUD
-
+Route::get('/pertanyaan/{id}/delete', 'PertanyaanController@delete');
 Route::resource('/pertanyaan', 'PertanyaanController');
 
 Route::get('/jawaban/{pertanyaan_id}', 'JawabanController@index');
