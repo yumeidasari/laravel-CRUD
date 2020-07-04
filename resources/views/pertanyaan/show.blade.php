@@ -9,6 +9,7 @@
                     <tr>
                         <td>Judul Pertanyaan</td>
                         <td></td>
+                        
                     </tr>
                    
                     <tr>
@@ -19,9 +20,41 @@
                     <tr>
                         <td>Tgl Buat</td>
                         <td>{{$pertanyaan->created_at}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Tgl Update</td>
+                        <td>{{$pertanyaan->updated_at}}</td>
+                        
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Jawaban</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @if(count($semua_jawaban)==0)
+                                <tr>
+                                    <td>
+                                        Tidak ada jawaban
+                                    </td>
+                                  
+                                </tr>
+                        @else
+                            @foreach($semua_jawaban as $jawaban)
+                                <tr>
+                                    <td>
+                                        {{$jawaban->jawaban}}
+                                    </td>
+                                    
+                                </tr>
+                            @endforeach
+                        @endif
+                    </table>
             <a href="{{url('pertanyaan')}}" class="btn btn-warning">Daftar Pertanyaan</a>
         </div>
     </div>
