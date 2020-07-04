@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pertanyaan;
+use App\Jawaban;
 
 class PertanyaanController extends Controller
 {
@@ -56,8 +57,9 @@ class PertanyaanController extends Controller
     public function show($id)
     {
         $pertanyaan = Pertanyaan::findOrFail($id);
+        $semua_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
 
-        return view('pertanyaan/show', compact('pertanyaan'));
+        return view('pertanyaan/show', compact('pertanyaan', 'semua_jawaban'));
     }
 
     /**
@@ -66,9 +68,19 @@ class PertanyaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function delete($id)
+    {
+        $pertanyaan = Pertanyaan::findOrFail($id);
+        
+        return view('pertanyaan/delete', compact('pertanyaan'));
+    }
+
     public function edit($id)
     {
-        //
+        $pertanyaan = Pertanyaan::findOrFail($id);
+        return view('pertanyaan/edit', compact('pertanyaan'));
+
     }
 
     /**
@@ -80,7 +92,11 @@ class PertanyaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pertanyaan = Pertanyaan::findOrFail($id);
+        $pertanyaan->pertanyaan = $request->pertanyaan;
+        $pertanyaan->save();
+        return redirect("pertanyaan")
+            ->with("pesan", "Berhasil mengedit pertanyaan");
     }
 
     /**
@@ -91,6 +107,9 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pertanyaan = Pertanyaan::findOrFail($id);
+        $pertanyaan->delete();
+
+        return redirect()->to("/pertanyaan");
     }
 }
