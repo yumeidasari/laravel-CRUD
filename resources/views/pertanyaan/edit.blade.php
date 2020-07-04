@@ -1,9 +1,10 @@
 @extends('adminlte.master')
 
 @section('content')
-    <div class="container pt-5">
+<div class="container pt-5">
             <div class="col-md-6 offset-md-3 ">
-            <h3><center>Buat Pertanyaan</center></h3>
+
+                <h3><center>Edit Pertanyaan</center></h3>
                 
                 <!--untuk menampilkan pesan yg didefinisikan pada controller-->
                 <center>
@@ -14,17 +15,20 @@
                 @endif
                 </center>
 
-                <form action="{{url("/pertanyaan " ) }}" method="POST">
+                <form action="{{url("pertanyaan/$pertanyaan->id")}}" method="POST"> <!--tidak perlu ada edit belakangnya-->
 
-                 {{csrf_field()}} 
+                <input type="hidden" value="PUT" name="_method">
+                 {{csrf_field()}} <!--cross site request forgery fungsinya untuk proteksi web dr bug/vulnerability-->
+
+                    
 
                     <label>Pertanyaan</label>
-                    <input type="text" name="pertanyaan" class="form-control">
+                    <input type="text" name="pertanyaan" class="form-control" value="{{$pertanyaan->pertanyaan}}">
                     <br>
-                    <input type="submit" class="btn btn-primary" value="Simpan" >
+                    <input type="submit" class="btn btn-primary" value="Update" >
                     <a href="{{url('pertanyaan')}}" class="btn btn-warning">Daftar Pertanyaan</a>
                 </form>
-            </div>
-    </div>
 
+            </div>
+        </div>
 @endsection
